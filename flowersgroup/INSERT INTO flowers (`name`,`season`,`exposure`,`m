@@ -1,0 +1,1 @@
+INSERT INTO flowers (`name`,`season`,`exposure`,`maintenance`) VALUES ('Tulips','Spring','Full Sun','Low'), ('Townsend Daisy','Spring','Full Sun','Low'), ('Daffodils','Spring','Full Sun','Low'), ('Lily','Spring','Full Sun','Low'), ('Lavender','Summer','Full Sun','Low'), ('Sunflower','Summer','Full Sun','Low'), ('Rose','Spring','Full Sun','High')

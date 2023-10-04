@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Book</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <style type="text/css">
+        .wrapper{
+            width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+  <?php
+    if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
+        require_once "config.php";
+
+        $id = trim($_GET["id"]);
+        $query = mysqli_query($conn, "SELECT * FROM books WHERE ID = '$id'");
+
+        if ($book = mysqli_fetch_assoc($query)) {
+            $author    = $book["author"];
+            $producer        = $book["producer"];
+            $writer       = $book["writer"];
+            $address = $book["address"];
+            $email       = $book["email"];
+            $action       = $book["action"];
+        } else {
+            header("location: read.php");
+            exit();
+        }
+
+        mysqli_close($conn);
+    } else {
+        header("location: read.php");
+        exit();
+    }
+  ?>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="page-header">
+                        <h1> View Book</h1>
+                    </div>
+                    <div class="form-group">
+                        <label>Author</label>
+                        <p class="form-control-static"><?php echo $author ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Producer</label>
+                        <p class="form-control-static"><?php echo $producer ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Writer</label>
+                        <p class="form-control-static"><?php echo $writer ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <p class="form-control-static"><?php echo $address ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <p class="form-control-static"><?php echo $email ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Action</label>
+                        <p class="form-control-static"><?php echo $action ?></p>
+                    </div>
+                    <p><a href="index.php" class="btn btn-primary">Back</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
